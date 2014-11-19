@@ -55,7 +55,7 @@
                     setCookie("username", d.getTime(), defaultExdays);
                 }else{
 
-                    $("#age").text("내 바벨피쉬 나이 : " + parseInt((d-user)/(24*3600*1000))) + " 살";
+                    $("#age").text("내 바벨피쉬 나이 : " + parseInt((d-user)/(24*3600*1000)) + " 살");
                     if(d - user > 30*24*60*60*1000){
                         $("#babelfish").attr("src", "img/max.jpg");
                     }else{
