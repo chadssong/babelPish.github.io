@@ -16,9 +16,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <![endif]-->
+
+    <!-- babel fish grow -->
+    <script>
+        var defaultExdays = 7;
+
+        function setCookie(cname,cvalue,exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname+"="+cvalue+"; "+expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var d = new Date();
+            var user=getCookie("username");
+            if (user != "") {
+
+                if(d - user > 7*24*60*60*1000){
+                    //over defaultExdays 7 day
+                    //show dead fish
+                    $("babelfish").attr("src", "img/dead.jpg");
+                    setCookie("username", d.getTime(), defaultExdays);
+                }else{
+
+                    $("age").text("age : " + parseInt((d-user)/(24*3600*1000)));
+                    if(d - user > 30*24*60*60*1000){
+                        $("babelfish").attr("src", "img/max.jpg");
+                    }else{
+                        $("babelfish").attr("src", "img/"+String((d-user)/(24*3600*1000))+".jpg");
+                    }
+                    setCookie("username",user, defaultExdays);
+                }
+            }else {
+                // first time
+                setCookie("username", d.getTime(), defaultExdays);
+            }
+        }
+
+    </script>
 </head>
-<body>
+<body onload="checkCookie()">
 <div class="wrapper">
     <header>
         <h1>Babelpish.github.io</h1>
@@ -30,6 +83,10 @@
         <p><a href="http://goo.gl/Z9jpnT">바벨피쉬 페이스북</a></p>
 
         <p><img src="img/d1106.jpg" alt="대문" class="img-responsive img-thumbnail"></p>
+
+        <p id="age">내 바벨피쉬 </p>
+
+        <p><img id="babelfish" src="img/d1106.jpg" alt="바벨피쉬" class="img-responsive img-thumbnail"></p>
 
     </header>
     <section>
