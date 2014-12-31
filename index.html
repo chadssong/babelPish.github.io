@@ -48,7 +48,7 @@
             var user=getCookie("username");
             if (user != "") {
 
-                $("#age").text("내 바벨피쉬 : " + parseInt((d-user)/(24*3600*1000)) + " 살");
+                $("#age").text("바벨피쉬 : " + parseInt((d-user)/(24*3600*1000)) + " 살");
                 if(d - user > 30*24*60*60*1000){
                     $("#babelfish").attr("src", "img/max.jpg");
                 }else{
@@ -96,7 +96,7 @@
 
         <p><img src="img/d141204.gif" alt="대문" class="img-responsive img-thumbnail"></p>
 
-        <p id="age">내 바벨피쉬 </p>
+        <p id="age">바벨피쉬 </p>
 
         <p><img id="babelfish" src="img/0.jpg" alt="바벨피쉬" class="img-responsive img-thumbnail"></p>
 
