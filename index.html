@@ -45,7 +45,7 @@
 
         function checkCookie() {
             var d = new Date();
-            var user=getCookie("username");
+            var user=getCookie("part_two");
             if (user != "") {
 
                 $("#age").text("바벨피쉬 : " + parseInt((d-user)/(24*3600*1000)) + " 살");
@@ -54,13 +54,13 @@
                 }else{
                     $("#babelfish").attr("src", "img/"+parseInt((d-user)/(24*3600*1000))+".jpg");
                 }
-                setCookie("username",user, defaultExdays);
+                setCookie("part_two",user, defaultExdays);
 
             }else {
                 //show dead fish
                 $("#babelfish").attr("src", "img/dead.jpg");
                 //dead or  first time
-                setCookie("username", d.getTime(), defaultExdays);
+                setCookie("part_two", d.getTime(), defaultExdays);
             }
         }
 
